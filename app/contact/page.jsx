@@ -56,10 +56,10 @@ const Contact = () => {
         <div className="flex flex-col xl:flex-row gap-[30px]">
           <div className="xl:w-[54%] order-2 xl:order-none">
             <form
-              className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
+              className="flex flex-col gap-4 p-10 bg-[#27272c] rounded-xl"
             >
               <h3 className="text-4xl text-accent">Wanna work together?</h3>
-              <p className="text-white/60">
+              <p className="text-white/60 mb-2">
                 If you're interested in collaborating, please fill out the form linked below with your details and project ideas.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -67,25 +67,25 @@ const Contact = () => {
                 <Input type="lastname" placeholder="Last Name" />
                 <Input type="email" placeholder="Email Address" />
                 <Input type="phone" placeholder="Phone Number" />
-                <Select>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectLabel value="est">Select a service</SelectLabel>
-                      <SelectItem value="cst">Web Development</SelectItem>
-                      <SelectItem value="mst">Data Analysis</SelectItem>
-                      <SelectItem value="idk">Tutoring</SelectItem>
-                      <SelectItem value="idk">Other</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <Textarea
-                  className="h-[200px]"
-                  placeholder="Type your message here."
-                />
               </div>
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel value="est">Select a service</SelectLabel>
+                    <SelectItem value="cst">Web Development</SelectItem>
+                    <SelectItem value="mst">Data Analysis</SelectItem>
+                    <SelectItem value="idk">Tutoring</SelectItem>
+                    <SelectItem value="idk">Other</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <Textarea
+                className="h-[200px]"
+                placeholder="Type your message here."
+              />
               <Button size="md" className="mx-auto">
                 Send Message
               </Button>

@@ -99,10 +99,10 @@ const Work = () => {
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row xl:gap-[30px]">
           <div
-            className="w-full xl:w-[50%] xl:h-[460px] flex flex-col
+            className="w-full xl:w-[50%] flex flex-col
             xl:justify-between order-2 xl:order-none"
           >
-            <div className="flex flex-col gap-[20px] h-[50%]">
+            <div className="flex flex-col gap-[20px]">
               <div
                 className="text-8xl leading-none font-extrabold text-transparent
                 text-outline">
@@ -110,12 +110,12 @@ const Work = () => {
               </div>
               <h2
                 className="text-[42px] font-bold leading-none text-white
-                  group-hover:text-accent transition-all duration-500 capitalize"
+                  hover:text-accent transition-all duration-500 capitalize"
               >
                 {project.title}
               </h2>
               <span className="text-accent text-sm">{project.category} Project</span>
-              <p className="text-white/60 xl:min-h-[100px]">{project.description}</p>
+              <p className="text-white/60 xl:min-h-[170px]">{project.description}</p>
               <ul className="flex gap-4">
                 {project.stack.map((item, index) => {
                   return (
