@@ -1,4 +1,5 @@
 "use client";
+// TODO: Add way to save forms
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
@@ -61,30 +62,30 @@ const Contact = () => {
               <p className="text-white/60">
                 If you're interested in collaborating, please fill out the form linked below with your details and project ideas.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input type="firstname" placeholder="First Name" />
                 <Input type="lastname" placeholder="Last Name" />
                 <Input type="email" placeholder="Email Address" />
                 <Input type="phone" placeholder="Phone Number" />
+                <Select>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a service" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel value="est">Select a service</SelectLabel>
+                      <SelectItem value="cst">Web Development</SelectItem>
+                      <SelectItem value="mst">Data Analysis</SelectItem>
+                      <SelectItem value="idk">Tutoring</SelectItem>
+                      <SelectItem value="idk">Other</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <Textarea
+                  className="h-[200px]"
+                  placeholder="Type your message here."
+                />
               </div>
-              <Select>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a service" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel value="est">Select a service</SelectLabel>
-                    <SelectItem value="cst">Web Development</SelectItem>
-                    <SelectItem value="mst">Data Analysis</SelectItem>
-                    <SelectItem value="idk">Tutoring</SelectItem>
-                    <SelectItem value="idk">Other</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <Textarea
-                className="h-[200px]"
-                placeholder="Type your message here."
-              />
               <Button size="md" className="mx-auto">
                 Send Message
               </Button>
@@ -92,7 +93,7 @@ const Contact = () => {
           </div>
           <div
             className="flex-1 flex items-center xl:justify-end order-1 
-            xl:order-none mb-8 xl:mb-0"
+            xl:order-none mb-8 xl:mb-0 mx-auto"
           >
             <ul className="flex flex-col gap-10">
               {info.map((item, index) => {
@@ -104,7 +105,7 @@ const Contact = () => {
                     </div>
                     <div className="flex-1">
                       <p className="text-white/60">{item.title}</p>
-                      <h3 className="text-xl">{item.description}</h3>
+                      <h3 className="lg:text-xl">{item.description}</h3>
                     </div>
                   </li>
                 );

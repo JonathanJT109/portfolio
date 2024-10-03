@@ -1,16 +1,26 @@
 "use client";
-import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
 // Components
 import Socials from "@/components/Socials"
 import Photo from "@/components/Photo"
 import Stats from "@/components/Stats"
-import { document } from "postcss"
 import DownloadBtn from "@/components/DownloadBtn";
 
 const Home = () => {
   return (
-    <section className="h-full">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: 1,
+        transition: {
+          delay: 0.25,
+          duration: 0.4,
+          ease: "easeIn",
+        }
+      }}
+      className="h-full"
+    >
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row items-center justify-between
           xl:pt-8 xl:pb-24">
@@ -44,7 +54,7 @@ const Home = () => {
         </div>
       </div>
       <Stats />
-    </section>
+    </motion.section>
   )
 }
 

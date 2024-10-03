@@ -23,7 +23,7 @@ const projects = [
     num: "01",
     category: "Frontend",
     title: "Portfolio Website",
-    description: "Created a portfolio website using Next.js",
+    description: "I developed a portfolio website using Next.js and Tailwind CSS to highlight my skills and share my story. The site serves as a dynamic platform that reflects my personality and showcases my work in an engaging and visually appealing way.",
     stack: [
       { name: "Next.js" },
       { name: "Tailwind CSS" },
@@ -37,7 +37,7 @@ const projects = [
     num: "02",
     category: "Data Science",
     title: "US Household Income",
-    description: "Visualized US Household Income using Tableau",
+    description: "I visualized U.S. household income data using Tableau, creating an interactive dashboard that presents insights at both the state and national levels. The project features a clear layout, allowing users to easily compare income trends across different states while also understanding the broader national context.",
     stack: [
       { name: "Tableau" },
       { name: "Data Visualization" },
@@ -50,7 +50,7 @@ const projects = [
     num: "03",
     category: "Data Science",
     title: "Salary after College",
-    description: "Using datasets I created a fun, interactive way to see the salary of recent graduates.",
+    description: "I created a fun, interactive tool that showcases the salaries of recent graduates using various datasets. This project allows users to explore and compare salary information based on factors like degree, location, and field of study. The engaging interface makes it easy to understand the earning potential for new graduates, providing valuable insights for students and educators alike.",
     stack: [
       { name: "R" },
       { name: "R Shiny" },
@@ -64,7 +64,7 @@ const projects = [
     num: "04",
     category: "Low-Level Programming",
     title: "Tokenizer in C++",
-    description: "Created a simple tokenizer in C++.",
+    description: "I developed a simple tokenizer in C++, marking the first step toward building a transpiler. This project breaks down input code into manageable tokens, enabling easier parsing and analysis.",
     stack: [
       { name: "C++" },
     ],
