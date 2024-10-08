@@ -50,7 +50,7 @@ const projects = [
     num: "03",
     category: "Data Science",
     title: "Salary after College",
-    description: "I created a fun, interactive tool that showcases the salaries of recent graduates using various datasets. This project allows users to explore and compare salary information based on factors like degree, location, and field of study. The engaging interface makes it easy to understand the earning potential for new graduates, providing valuable insights for students and educators alike.",
+    description: "I created a fun, interactive tool that showcases the salaries of recent graduates using various datasets. This project allows users to explore and compare salary information based on factors like degree, location, and field of study.",
     stack: [
       { name: "R" },
       { name: "R Shiny" },

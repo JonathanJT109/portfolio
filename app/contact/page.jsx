@@ -1,10 +1,13 @@
 "use client";
-// TODO: Add way to save forms
-import { motion } from "framer-motion";
 
+// TODO: What to do after submitting form?
+// TODO: Handle required fields
+
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import Swal from "sweetalert2";
 
 import {
   Select,
@@ -16,7 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 const info = [
   {
@@ -29,14 +32,47 @@ const info = [
     title: "Email Address",
     description: "jonathangon.2014@gmail.com",
   },
-  // {
-  //   icon: <FaMapMarkerAlt />,
-  //   title: "Location",
-  //   description: "My House",
-  // },
 ]
 
 const Contact = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const response = await fetch("/api/form", {
+      method: "POST",
+      body: formData,
+    })
+    const data = await response.json();
+    if (data.success) {
+      Swal.fire({
+        icon: "success",
+        title: "Submitted!",
+        text: "Thank you for submitting the form. I'll get back to you as soon as possible.",
+        background: "#1c1c22",
+        color: "white",
+        padding: "2rem",
+        confirmButtonColor: "#DA5353",
+        iconColor: "#DA5353",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Failed!",
+        text: "Failed to submit form. Please try again later.",
+        background: "#1c1c22",
+        color: "white",
+        padding: "2rem",
+        confirmButtonColor: "#DA5353",
+        iconColor: "#DA5353",
+      })
+    }
+  }
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -48,8 +84,6 @@ const Contact = () => {
           ease: "easeIn",
         }
       }}
-      // className="min-h-[80vh] flex items-center justify-center py-6
-      // xl:py-0"
       className="py-6"
     >
       <div className="container mx-auto">
@@ -57,15 +91,16 @@ const Contact = () => {
           <div className="xl:w-[54%] order-2 xl:order-none">
             <form
               className="flex flex-col gap-4 p-10 bg-[#27272c] rounded-xl"
+              onSubmit={handleSubmit}
             >
               <h3 className="text-4xl text-accent">Wanna work together?</h3>
               <p className="text-white/60 mb-2">
                 If you're interested in collaborating, please fill out the form linked below with your details and project ideas.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input type="firstname" placeholder="First Name" />
-                <Input type="lastname" placeholder="Last Name" />
-                <Input type="email" placeholder="Email Address" />
+                <Input type="firstname" placeholder="First Name" name="name" required />
+                <Input type="lastname" placeholder="Last Name" name="lastname" required />
+                <Input type="email" placeholder="Email Address" name="email" required />
                 <Input type="phone" placeholder="Phone Number" />
               </div>
               <Select>
@@ -74,19 +109,21 @@ const Contact = () => {
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel value="est">Select a service</SelectLabel>
-                    <SelectItem value="cst">Web Development</SelectItem>
-                    <SelectItem value="mst">Data Analysis</SelectItem>
-                    <SelectItem value="idk">Tutoring</SelectItem>
-                    <SelectItem value="idk">Other</SelectItem>
+                    <SelectLabel value="default">Select a service</SelectLabel>
+                    <SelectItem value="web_development">Web Development</SelectItem>
+                    <SelectItem value="data_analysis">Data Analysis</SelectItem>
+                    <SelectItem value="tutoring">Tutoring</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
               <Textarea
                 className="h-[200px]"
                 placeholder="Type your message here."
+                name="message"
+                required
               />
-              <Button size="md" className="mx-auto">
+              <Button size="md" className="mx-auto" type="submit">
                 Send Message
               </Button>
             </form>
