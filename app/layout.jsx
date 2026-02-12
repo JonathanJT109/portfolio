@@ -13,13 +13,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${jetbrainsMono.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${jetbrainsMono.variable} ${jetbrainsMono.variable} antialiased h-screen flex flex-col overflow-hidden`}
       >
         <Header />
         {/* <StairTransition /> */}
         {/* Include Page Transition?  */}
         {/* <PageTransition> */}
-        {children}
+        <main className="flex-1 min-h-0 overflow-auto">
+          {children}
+        </main>
         {/* </PageTransition> */}
       </body>
     </html>

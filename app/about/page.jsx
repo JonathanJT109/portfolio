@@ -1,17 +1,13 @@
 "use client";
 
-// TODO: Add Acomplisments section
-// TODO: Make the tabs a carousel when sm or lg?
-
 import { useState, useEffect, useCallback } from "react";
 import { RiGraduationCapLine } from "react-icons/ri"
 import { MdWorkOutline } from "react-icons/md"
 import { HiChevronDown } from "react-icons/hi"
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { HiArrowsRightLeft } from "react-icons/hi2"
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 function useScrollCue() {
   const [node, setNode] = useState(null);
@@ -139,9 +135,26 @@ const education = {
   ]
 }
 
+const sections = {
+  experience: {
+    icon: MdWorkOutline,
+    other: "education",
+    otherLabel: "Education",
+  },
+  education: {
+    icon: RiGraduationCapLine,
+    other: "experience",
+    otherLabel: "Experience",
+  },
+}
+
 const Resume = () => {
+  const [active, setActive] = useState("experience");
   const expScroll = useScrollCue();
   const eduScroll = useScrollCue();
+
+  const current = active === "experience" ? experience : education;
+  const { icon: Icon, other, otherLabel } = sections[active];
 
   return (
     <motion.div
@@ -154,52 +167,55 @@ const Resume = () => {
           ease: "easeIn",
         }
       }}
-      className="min-h-[80vh] flex items-center justify-center py-12
-      xl:py-0"
+      className="h-full flex flex-col py-6 overflow-hidden"
     >
-      <div className="container mx-auto">
-        <Tabs
-          defaultValue="experience"
-          className="flex flex-col gap-8"
-        >
-          <TabsList className="flex flex-row justify-center gap-4 sm:gap-6 mx-auto w-auto">
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-          </TabsList>
+      <div className="container mx-auto flex-1 min-h-0 flex flex-col">
+        <div className="flex flex-col gap-[25px] text-left flex-1 min-h-0">
+          {/* Clickable title area */}
+          <button
+            onClick={() => setActive(other)}
+            className="flex flex-col mx-auto items-center gap-2 group cursor-pointer"
+          >
+            <div className="flex items-center gap-4">
+              <Icon className="text-3xl" />
+              <h3 className="text-4xl font-bold">{current.title}</h3>
+            </div>
+            <div className="flex items-center gap-2">
+              <HiArrowsRightLeft className="text-lg text-white/30 group-hover:text-accent transition-colors duration-200" />
+              <span className="text-base text-white/30 group-hover:text-accent transition-colors duration-200">
+                {otherLabel}
+              </span>
+            </div>
+          </button>
 
-          <div className="w-full">
-            <TabsContent
-              value="experience"
-              className="w-full"
-            >
-              <div
-                className="flex flex-col gap-[25px] text-center xl:text-left"
+          <p className="text-white/70 mx-7">
+            {current.description}
+          </p>
+          <div className="h-[1px] w-full bg-accent/20"></div>
+
+          {/* Content */}
+          <AnimatePresence mode="wait">
+            {active === "experience" && (
+              <motion.div
+                key="experience"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="flex-1 min-h-0"
               >
-                <div className="flex mx-auto items-center gap-5">
-                  <MdWorkOutline className="text-3xl" />
-                  <h3 className="text-4xl font-bold">{experience.title}</h3>
-                </div>
-                <p
-                  className="text-white/60 mx-7"
-                >
-                  {experience.description}
-                </p>
-                <div className="border border-white/50 my-0"></div>
-                <span></span>
-                <div className="relative" ref={expScroll.ref}>
-                  <ScrollArea className="h-[400px]">
+                <div className="relative h-full" ref={expScroll.ref}>
+                  <ScrollArea className="h-full">
                     <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] pb-12">
                       {experience.items.map((item, index) => {
                         return (
-                           <li
+                          <li
                             key={index}
                             className="bg-[#232329] py-8
                             px-10 rounded-xl flex flex-col justify-start
                             items-start gap-1"
                           >
-                            <h3
-                              className="text-2xl w-full mb-1"
-                            >
+                            <h3 className="text-2xl w-full mb-1">
                               {item.position}
                             </h3>
                             <p className="text-white/80 text-base font-bold">{item.company}</p>
@@ -212,7 +228,7 @@ const Resume = () => {
                                 </li>
                               ))}
                             </ul>
-                            <div className="flex flex-wrap gap-2 mt-4">
+                            <div className="flex flex-wrap gap-2 mt-auto pt-4">
                               {item.skills.map((skill, sIndex) => (
                                 <span key={sIndex} className="text-xs bg-white/10 text-white/80 px-2 py-1 rounded-md">{skill}</span>
                               ))}
@@ -226,28 +242,20 @@ const Resume = () => {
                     <HiChevronDown className="text-white/40 text-xl animate-bounce" />
                   </div>
                 </div>
-              </div>
-            </TabsContent>
+              </motion.div>
+            )}
 
-            <TabsContent
-              value="education"
-              className="w-full"
-            >
-              <div
-                className="flex flex-col gap-[30px] text-center xl:text-left"
+            {active === "education" && (
+              <motion.div
+                key="education"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="flex-1 min-h-0"
               >
-                <div className="flex mx-auto items-center gap-5">
-                  <RiGraduationCapLine className="text-3xl" />
-                  <h3 className="text-4xl font-bold">{education.title}</h3>
-                </div>
-                <p
-                  className="text-white/60 mx-7"
-                >
-                  {education.description}
-                </p>
-                <div className="border border-white/50 my-0"></div>
-                <div className="relative" ref={eduScroll.ref}>
-                  <ScrollArea className="h-[400px]">
+                <div className="relative h-full" ref={eduScroll.ref}>
+                  <ScrollArea className="h-full">
                     <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] pb-12">
                       {education.items.map((item, index) => {
                         return (
@@ -287,10 +295,10 @@ const Resume = () => {
                     <HiChevronDown className="text-white/40 text-xl animate-bounce" />
                   </div>
                 </div>
-              </div>
-            </TabsContent>
-          </div>
-        </Tabs>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   )
