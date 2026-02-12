@@ -18,34 +18,30 @@ const stats = [
     // },
 ]
 
-const Stats = () => {
+const Stats = ({ className = "" }) => {
     return (
-        <section className="py-4">
-            <div className="container mx-auto">
-                <div className="flex flex-wrap gap-6 max-w-[80vw] mx-auto xl:max-w-none justify-center">
-                    {stats.map((item, index) => {
-                        return (
-                            <div
-                                className="flex-1 flex gap-4 items-center justify-center"
-                                key={index}>
-                                <CountUp
-                                    end={item.num}
-                                    duration={5}
-                                    delay={2}
-                                    className="text-4xl xl:text-6xl font-extrabold"
-                                />
-                                <p
-                                    className={`${item.text.length < 15 ? "max-w-[100px]" : "max-w-[150px]"
-                                        } leading-snug text-white/80`}
-                                >
-                                    {item.text}
-                                </p>
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </section>
+        <div className={`flex flex-wrap gap-6 xl:gap-12 justify-center ${className}`}>
+            {stats.map((item, index) => {
+                return (
+                    <div
+                        className="flex gap-3 items-center"
+                        key={index}>
+                        <CountUp
+                            end={item.num}
+                            duration={5}
+                            delay={2}
+                            className="text-3xl xl:text-4xl font-extrabold"
+                        />
+                        <p
+                            className={`${item.text.length < 15 ? "max-w-[100px]" : "max-w-[150px]"
+                                } leading-snug text-white/80 text-sm`}
+                        >
+                            {item.text}
+                        </p>
+                    </div>
+                );
+            })}
+        </div>
     )
 }
 

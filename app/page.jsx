@@ -71,56 +71,50 @@ const Home = () => {
       }}
       className="xl:h-full flex flex-col"
     >
-      <div className="container mx-auto xl:flex-1 xl:min-h-0 flex flex-col pb-8">
-        <div className="flex flex-col xl:flex-row items-center justify-between
-          xl:flex-1 xl:min-h-0 py-2 xl:py-0">
-          {/* text with social icons on the left */}
-          <div className="order-2 xl:order-none text-center xl:text-left">
-            <h1 className="h1 mb-5">
+      <div className="container mx-auto xl:flex-1 xl:min-h-0 flex flex-col justify-between
+        py-6 xl:py-0">
+
+        {/* Hero — text + photo */}
+        <div className="flex flex-col xl:flex-row items-center xl:items-center
+          xl:justify-between xl:flex-1 xl:min-h-0">
+
+          {/* Left column — text */}
+          <div className="order-2 xl:order-none text-center xl:text-left max-w-[600px]">
+            <h1 className="h1 mb-3">
               Hello, I&apos;m<br />
               <span className="text-accent">{typedText}</span>
               <span className="text-accent animate-pulse">|</span>
             </h1>
-            {/* Subtitle + description row with icons on the left */}
-            <div className="flex gap-6">
-              {/* Vertical social icons — xl only */}
-              <div className="hidden xl:flex pt-1">
-                <Socials
-                  containerStyles="flex flex-col gap-4"
-                  iconStyles="w-9 h-9 border
-                  border-accent rounded-full flex justify-center items-center
-                  text-accent text-base hover:bg-accent hover:text-primary
-                  hover:transition-all duration-500"
-                />
-              </div>
-              <div>
-                <span className="text-xl font-semibold">Computer &amp; Data Scientist</span>
-                <p className="max-w-[500px] mt-2 mb-2 text-white/80 text-left">
-                  Hi, I'm Jonathan Gonzalez, a Computer Scientist with expertise in Python, Java, and C++, specializing in web development and data analysis. I'm always on the lookout for new technologies to enhance my workflow.
-                </p>
-              </div>
-            </div>
-            {/* Separator + download button — full width of social+description area */}
-            <div className="border border-white/50 my-4"></div>
-            <div className="flex flex-col xl:flex-row items-center xl:items-start gap-6">
-              <DownloadBtn btnStyles="uppercase flex items-center gap-2" />
-              {/* Mobile social icons — horizontal */}
-              <div className="mb-4 xl:hidden">
-                <Socials
-                  containerStyles="flex gap-6"
-                  iconStyles="w-9 h-9 border
-                  border-accent rounded-full flex justify-center items-center
-                  text-accent text-base hover:bg-accent hover:text-primary
-                  hover:transition-all duration-500"
-                />
-              </div>
-            </div>
+            <h2 className="text-xl font-semibold mb-3">Computer &amp; Data Scientist</h2>
+            <p className="text-white/80 text-left mb-8 xl:mb-0">
+              Computer &amp; Data Science graduate with hands-on experience building AI-driven systems, machine learning models, and web applications. From research in deep learning to developing enterprise tools at Roche, I bring a practical, problem-solving approach to every project.
+            </p>
           </div>
-          <div className="order-1 xl:order-none mb-4 mt-2 xl:mb-0">
+
+          {/* Right column — photo */}
+          <div className="order-1 xl:order-none mb-6 xl:mb-0">
             <Photo />
           </div>
         </div>
-        <Stats />
+
+        {/* Bottom zone — separator, actions, stats */}
+        <div className="xl:pb-10">
+          <div className="border-t border-white/20 mb-5"></div>
+          <div className="flex flex-col xl:flex-row items-center xl:justify-between gap-6">
+            {/* Left — socials + download */}
+            <div className="flex flex-col xl:flex-row items-center gap-5">
+              <Socials
+                containerStyles="flex gap-4"
+                iconStyles="w-[44px] h-[44px] border border-accent rounded-full flex justify-center
+                  items-center text-accent text-lg hover:bg-accent hover:text-primary
+                  hover:transition-all duration-500"
+              />
+              <DownloadBtn btnStyles="uppercase flex items-center gap-2" />
+            </div>
+            {/* Right — stats */}
+            <Stats />
+          </div>
+        </div>
       </div>
     </motion.section>
   )
