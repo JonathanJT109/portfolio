@@ -45,7 +45,7 @@ const Photo = () => {
           }}
         />
       </motion.svg>
-    </div >
+    </div>
   )
 }
 
