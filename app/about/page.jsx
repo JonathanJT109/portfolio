@@ -87,7 +87,7 @@ const Resume = () => {
                 <div className="flex flex-col gap-[40px] text-left flex-1 min-h-0">
                     <button
                         onClick={() => setActive(other)}
-                        className="flex flex-col mx-auto items-center gap-2 group cursor-pointer"
+                        className="flex flex-col mx-auto items-center gap-2 group cursor-pointer my-5"
                     >
                         <div className="flex items-center gap-4">
                             <Icon className="text-3xl" />
@@ -113,28 +113,21 @@ const Resume = () => {
                             >
                                 <div className="relative h-full" ref={expRef}>
                                     <ScrollArea className="h-full">
-                                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] pb-12">
+                                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-12">
                                             {experience.items.map((item, index) => (
                                                 <li
                                                     key={index}
-                                                    className="bg-[#232329] py-8 px-10 rounded-xl flex flex-col justify-start items-start gap-1"
+                                                    className="border-l-2 border-accent pl-6 py-4 flex flex-col gap-2"
                                                 >
-                                                    <h3 className="text-2xl w-full mb-1">
+                                                    <span className="text-accent text-xs font-semibold uppercase tracking-widest">{item.duration}</span>
+                                                    <h3 className="text-xl font-bold leading-tight">
                                                         {item.position}
                                                     </h3>
-                                                    <p className="text-white/80 text-base font-bold">{item.company}</p>
-                                                    <span className="text-accent text-sm font-semibold uppercase">{item.duration}</span>
-                                                    <ul className="mt-3 flex flex-col gap-2 text-left w-full">
-                                                        {item.bullets.map((bullet, bIndex) => (
-                                                            <li key={bIndex} className="flex items-start gap-2">
-                                                                <span className="w-[6px] h-[6px] rounded-full bg-accent mt-2 shrink-0" />
-                                                                <p className="text-white/60 text-sm">{bullet}</p>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                    <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                                                    <p className="text-white text-sm font-medium">{item.company}</p>
+                                                    <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                                                    <div className="flex flex-wrap gap-1.5 mt-1">
                                                         {item.skills.map((skill, sIndex) => (
-                                                            <span key={sIndex} className="text-xs bg-white/10 text-white/80 px-2 py-1 rounded-md">{skill}</span>
+                                                            <span key={sIndex} className="text-[11px] bg-white/5 text-white/60 px-2 py-0.5 rounded">{skill}</span>
                                                         ))}
                                                     </div>
                                                 </li>
@@ -159,25 +152,25 @@ const Resume = () => {
                             >
                                 <div className="relative h-full" ref={eduRef}>
                                     <ScrollArea className="h-full">
-                                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] pb-12">
+                                        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-12">
                                             {education.items.map((item, index) => (
                                                 <li
                                                     key={index}
-                                                    className="bg-[#232329] py-8 px-10 rounded-xl flex flex-col justify-start items-start gap-1"
+                                                    className="border-l-2 border-accent pl-6 py-4 flex flex-col gap-2"
                                                 >
-                                                    <h3 className="text-2xl w-full mb-2 text-center lg:text-left">
+                                                    <span className="text-accent text-xs font-semibold uppercase tracking-widest">{item.duration}</span>
+                                                    <h3 className="text-xl font-bold leading-tight">
                                                         {item.degree}
                                                     </h3>
-                                                    <p className="text-white/80 text-base font-bold">{item.institution}</p>
+                                                    <p className="text-white text-sm font-medium">{item.institution}</p>
                                                     {item.area && (
-                                                        <p className="text-white/90 italic">{item.area}</p>
+                                                        <p className="text-white/60 text-sm italic">{item.area}</p>
                                                     )}
-                                                    <span className="text-accent text-sm font-semibold uppercase">{item.duration}</span>
                                                     {item.accomplishments?.length > 0 && (
-                                                        <ul className="mt-3 flex flex-col gap-2 text-left w-full">
+                                                        <ul className="flex flex-col gap-1.5 mt-1">
                                                             {item.accomplishments.map((acc, accIndex) => (
                                                                 <li key={accIndex} className="flex items-start gap-2">
-                                                                    <span className="w-[6px] h-[6px] rounded-full bg-accent mt-2 shrink-0" />
+                                                                    <span className="w-[5px] h-[5px] rounded-full bg-accent mt-1.5 shrink-0" />
                                                                     <p className="text-white/60 text-sm">{acc}</p>
                                                                 </li>
                                                             ))}

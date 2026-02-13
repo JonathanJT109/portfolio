@@ -23,7 +23,7 @@ export const projects = [
     },
     {
         category: "Game Development",
-        title: "Platformer",
+        title: "Big Blocky Adventure",
         description:
             "In a world of minimalist geometry, a small, adventurous block named Blocky dreams of exploring the vast, floating landscapes beyond its home. One day, a powerful gust of wind sweeps Blocky away to an unknown region filled with perilous platforms and sharp, menacing spikes...",
         stack: [{ name: "JavaScript" }, { name: "THREE.JS" }],
